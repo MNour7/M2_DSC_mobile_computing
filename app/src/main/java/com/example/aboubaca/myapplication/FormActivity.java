@@ -12,8 +12,6 @@ public class FormActivity extends AppCompatActivity implements View.OnClickListe
     private EditText edittext;
     private Button buttonvalidate;
 
-    public static String NAME_KEY ="USERNAME";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,10 +38,10 @@ public class FormActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void saveData(){
-        Intent intent = new Intent();
-        intent.putExtra(NAME_KEY, edittext.getText().toString());
-
-        setResult(RESULT_OK,intent);
+        String name = edittext.getText().toString();
+        if(!name.isEmpty()){
+            DataManager.getInstance().addName(name);
+        }
         finish();
     }
 }
